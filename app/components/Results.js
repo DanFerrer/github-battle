@@ -5,6 +5,7 @@ import { FaCompass, FaBriefcase, FaUsers, FaUserFriends, FaUser } from 'react-ic
 import { battle } from '../utils/api';
 import Card from './Card';
 import Loading from './Loading';
+import Tooltip from './Tooltip';
 
 function ProfileList({ profile }) {
 	return (
@@ -15,14 +16,18 @@ function ProfileList({ profile }) {
 			</li>
 			{profile.location && (
 				<li>
-					<FaCompass color='rgb(144, 115, 255)' size={22} />
-					{profile.location}
+					<Tooltip text="Users Location">
+						<FaCompass color='rgb(144, 115, 255)' size={22} />
+						{profile.location}
+					</Tooltip>
 				</li>
 			)}
 			{profile.company && (
 				<li>
-					<FaBriefcase color='#795548' size={22} />
-					{profile.company}
+					<Tooltip text="Users Company">
+						<FaBriefcase color='#795548' size={22} />
+						{profile.company}
+					</Tooltip>
 				</li>
 			)}
 			<li>
@@ -103,7 +108,7 @@ export default class Results extends React.Component {
 						<ProfileList profile={winner.profile}/>
 					</Card>	
 					<Card 
-						header={winner.score === loser.score ? 'Tie' : 'Winner'}
+						header={winner.score === loser.score ? 'Tie' : 'Loser'}
 						subheader={`Score: ${loser.score.toLocaleString()}`}
 						avatar={loser.profile.avatar_url}
 						href={loser.profile.html_url}
