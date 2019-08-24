@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Hover from './Hover';
 
 const styles = {
 	container: {
@@ -19,53 +20,24 @@ const styles = {
 		marginBottom: '5px',
 		color: '#fff',
 		textAlign: 'center',
-		fontSize: '14px',
+		fontSize: '14px', 
 	}
 };
 
-export default class Tooltip extends React.Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			hovering: false,
-		};
-
-		this.handleMouseOver = this.handleMouseOver.bind(this);
-		this.handleMouseOut = this.handleMouseOut.bind(this);
-	}
-
-	handleMouseOver() {
-		this.setState({
-			hovering: true
-		});
-	}
-
-	handleMouseOut() {
-		this.setState({
-			hovering: false
-		});
-	}
-    
-	render() { 
-		const { hovering } = this.state;
-		const { text, children } = this.props;
-
-		return ( 
-			<div 
-				onMouseOver={this.handleMouseOver}
-				onMouseOut={this.handleMouseOut}
-				style={styles.container}
-			>
-				{hovering === true && <div style={styles.tooltip}>{text}</div>}
-				{children}
-			</div>
-		);
-	}
+export default function Tooltip({ text, children }) {
+	return ( 
+		<Hover>
+			{(hovering, handleMouseOver, handleMouseOut) => (
+				<div style={styles.container} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+					{hovering === true && <div style={styles.tooltip}>{text}</div>}
+					{children}
+				</div>
+			)}
+		</Hover>
+	);
 }
 
 Tooltip.propTypes = {
 	text: PropTypes.string.isRequired
 };
 
- 

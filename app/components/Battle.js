@@ -109,8 +109,8 @@ export default class Battle extends React.Component {
 		super(props);
 
 		this.state = {
-			playerOne: null,
-			playerTwo: null,
+			playerOne: 'DanFerrer',
+			playerTwo: 'Moo',
 			battle: false
 		};
 
