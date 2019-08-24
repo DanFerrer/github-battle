@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './index.css';
 
 import { ThemeProvider } from './contexts/theme';
-import Nav from './components/nav';
+import Nav from './components/Nav';
 import Loading from './components/Loading';
 
 const Popular = React.lazy(() => import('./components/Popular'));
